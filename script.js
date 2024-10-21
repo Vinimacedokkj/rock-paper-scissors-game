@@ -1,107 +1,115 @@
-  var playerPoints = 0;
-  var pcPoints = 0;
- 
- alert('Que os jogos comecem!');
+var pcPoints = 0;
+var playerPoints = 0;
+
+alert('This game finishes in 10 points, who make it first will be the winner.\nGood Luck!');
 
 function generateRandom() {
-  let pcNum = Math.random();
+  let pcPlay = Math.random();
   
-  if (pcNum >= 0 && pcNum < 0.3) {
-    pcNum = 'Rock';
-  } else if (pcNum >= 0.3 && pcNum < 0.6) {
-    pcNum = 'Paper';
-  } else if (pcNum >= 0.6 && pcNum < 1) {
-    pcNum = 'Scissors';
+  if (pcPlay >= 0 && pcPlay < 0.3) {
+    pcPlay = 'Rock';
+  } else if (pcPlay >= 0.3 && pcPlay < 0.6) {
+    pcPlay = 'Paper';
+  } else if (pcPlay >= 0.6 && pcPlay <= 1) {
+    pcPlay = 'Scissors';
   }
   
-  return pcNum;
+  return pcPlay;
 }
 
+var finalResult = document.getElementById('result');
+
+// Rock function
 function rockFunction() {
-  let pcChoice = generateRandom();
+  let pcPlay = generateRandom();
   
-  let choice = 'Rock';
+  let playerPlay = 'Rock';
   
-  if (choice == 'Rock' && pcChoice == 'Rock') {
-    document.getElementById('result').innerHTML = `🗿 x 🗿<br>Placar: ${playerPoints}x${pcPoints}`;
-
-  } else if (choice == 'Rock' && pcChoice == 'Paper') {
-    pcPoints += 1;
-    document.getElementById('result').innerHTML = `🗿 x 📄<br>Placar: ${playerPoints}x${pcPoints}`;
+  if (playerPlay === 'Rock' && pcPlay === 'Rock') {
+    finalResult.innerHTML = `You 🗿 x 🗿 PC<br>${playerPoints}x${pcPoints}`;
     
-  } else if (choice == 'Rock' && pcChoice == 'Scissors') {
+  } else if (playerPlay === 'Rock' && pcPlay === 'Paper') {
+    pcPoints += 1; 
+    finalResult.innerHTML = `You 🗿 x 📃 PC<br>${playerPoints}x${pcPoints}`;
+    
+  } else if (playerPlay === 'Rock' && pcPlay === 'Scissors') {
     playerPoints += 1;
-    document.getElementById('result').innerHTML = `🗿 x ✂️<br>Placar: ${playerPoints}x${pcPoints}`;
+    finalResult.innerHTML = `You 🗿 x ✂ PC<br>${playerPoints}x${pcPoints}`;
   }
-
-    if (playerPoints == 10) {
-      alert('Você ganhou!! Meus parabéns\nIniciando um novo jogo');
-      playerPoints = 0;
-      pcPoints = 0;
-      
-    } else if (pcPoints == 10) {
-      alert('Você perdeu, não foi dessa vez...\nIniciando um novo jogo');
-      playerPoints = 0;
-      pcPoints = 0;
+  
+  if (playerPoints == 10) {
+    alert(`You won\nFinal result: You ${playerPoints} x ${pcPoints} PC`);
+    pcPoints = 0;
+    playerPoints = 0;
+    finalResult.innerHTML = `Score reseted<br>You ${playerPoints} x ${pcPoints} PC`;
+} else if (pcPoints == 10) {
+    alert(`PC won\nFinal result: You ${playerPoints} x ${pcPoints} PC`);
+    pcPoints = 0;
+    playerPoints = 0;
+    finalResult.innerHTML = `Score reseted<br>You ${playerPoints} x ${pcPoints} PC`;
+  }
 }
-}
 
+// Paper function
 function paperFunction() {
-  let pcChoice = generateRandom();
+  let pcPlay = generateRandom();
   
-  let choice = 'Paper';
+  let playerPlay = 'Paper';
   
-  if (choice == 'Paper' && pcChoice == 'Rock') {
+  if (playerPlay === 'Paper' && pcPlay === 'Rock') {
     playerPoints += 1;
-    document.getElementById('result').innerHTML = `📄 x 🗿<br>Placar: ${playerPoints}x${pcPoints}`;
+    finalResult.innerHTML = `You 📃 x 🗿PC<br>${playerPoints}x${pcPoints}`;
     
-  } else if (choice == 'Paper' && pcChoice == 'Paper') {
-    document.getElementById('result').innerHTML = `📄 x 📄<br>Placar: ${playerPoints}x${pcPoints}`;
+  } else if (playerPlay === 'Paper' && pcPlay === 'Paper') {
+    finalResult.innerHTML = `You 📃 x 📃 PC<br>${playerPoints}x${pcPoints}`;
     
-  } else if (choice == 'Paper' && pcChoice == 'Scissors') {
+  } else if (playerPlay === 'Paper' && pcPlay === 'Scissors') {
     pcPoints += 1;
-    document.getElementById('result').innerHTML = `📄 x ✂️<br>Placar: ${playerPoints}x${pcPoints}`;
+    finalResult.innerHTML = `You 📃 x ✂ PC<br>${playerPoints}x${pcPoints}`;
   }
   
-      if (playerPoints == 10) {
-        alert('Você ganhou!! Meus parabéns\nIniciando um novo jogo');
-        playerPoints = 0;
-        pcPoints = 0;
-        
-    } else if (pcPoints == 10) {
-        alert('Você perdeu, não foi dessa vez...\nIniciando um novo jogo');
-        playerPoints = 0;
-        pcPoints = 0;
-}
+  if (playerPoints == 10) {
+    alert(`You won\nFinal result: You ${playerPoints} x ${pcPoints} PC`);
+    pcPoints = 0;
+    playerPoints = 0;
+    finalResult.innerHTML = `Score reseted<br>You ${playerPoints} x ${pcPoints} PC`;
+    
+} else if (pcPoints == 10) {
+    alert(`PC won\nFinal result: You ${playerPoints} x ${pcPoints} PC`);
+    pcPoints = 0;
+    playerPoints = 0;
+    finalResult.innerHTML = `Score reseted<br>You ${playerPoints} x ${pcPoints} PC`;
+  }
 }
 
+// Scissros function
 function scissorsFunction() {
-  let pcChoice = generateRandom();
+  let pcPlay = generateRandom();
   
-  let choice = 'Scissors';
+  let playerPlay = 'Scissors';
   
-  if (choice == 'Scissors' && pcChoice == 'Rock') {
+  if (playerPlay === 'Scissors' && pcPlay === 'Rock') {
     pcPoints += 1;
-    document.getElementById('result').innerHTML = `✂️ x 🗿<br>Placar: ${playerPoints}x${pcPoints}`;
+    finalResult.innerHTML = `You ✂ x 🗿 PC<br>${playerPoints}x${pcPoints}`;
     
-  } else if (choice == 'Scissors' && pcChoice == 'Paper') {
+  } else if (playerPlay === 'Scissors' && pcPlay === 'Paper') {
     playerPoints += 1;
-    document.getElementById('result').innerHTML = `✂️ x 📄<br>Placar: ${playerPoints}x${pcPoints}`;
+    finalResult.innerHTML = `You ✂ x 📃 PC<br>${playerPoints}x${pcPoints}`;
     
-  } else if (choice == 'Scissors' && pcChoice == 'Scissors') {
-    document.getElementById('result').innerHTML = `✂️ x ✂️<br>Placar: ${playerPoints}x${pcPoints}`;
-  }
-  
-    if (playerPoints == 10) {
-      alert('Você ganhou!! Meus parabéns\nIniciando um novo jogo');
-      playerPoints = 0;
-      pcPoints = 0;
-      console.log('Placar resetado, pode jogar novamente');
-      
-  } else if (pcPoints == 10) {
-      alert('Você perdeu, não foi dessa vez...\nIniciando um novo jogo');
-      playerPoints = 0;
-      pcPoints = 0;
+  } else if (playerPlay === 'Scissors' && pcPlay === 'Scissors') {
+    finalResult.innerHTML = `You ✂ x ✂ PC<br>${playerPoints}x${pcPoints}`;
 }
+  
+  if (playerPoints == 10) {
+    alert(`You won\nFinal result: You ${playerPoints} x ${pcPoints} PC`);
+    pcPoints = 0;
+    playerPoints = 0;
+    finalResult.innerHTML = `Score reseted<br>You ${playerPoints} x ${pcPoints} PC`;
+} else if (pcPoints == 10) {
+    alert(`PC won\nFinal result: You ${playerPoints} x ${pcPoints} PC`);
+    pcPoints = 0;
+    playerPoints = 0;
+    finalResult.innerHTML = `Score reseted<br>You ${playerPoints} x ${pcPoints} PC`;
+  }
 }
 
